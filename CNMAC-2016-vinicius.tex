@@ -1,0 +1,88 @@
+\documentclass[a4,11pt]{report}
+
+\usepackage[brazil]{babel}      % para texto em Português
+%\usepackage[english]{babel}    % para texto em Inglês
+
+\usepackage[latin1]{inputenc}   % para acentuação em Português OU
+%\usepackage[utf8]{inputenc}   % para acentuação em Português com o uso do Unicode,
+% mude a codificação desse template para utf-8
+
+%%
+%% POR FAVOR, NÃO FAÇA MUDANÇAS NESSE TEMPLATE QUE ACARRETEM  EM
+%% ALTERAÇÃO NA FORMATAÇÃO FINAL DO TEXTO
+%%
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage[centertags]{amsmath}
+\usepackage{graphicx,indentfirst,amsmath,amsfonts,amssymb,amsthm,newlfont}
+\usepackage{longtable}
+\usepackage{cite}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{url}
+
+
+\begin{document}
+
+%********************************************************
+\title{Otimização para Aumento de Exatidão da\\Transformada Wavelet de Haar À-Trous}
+
+\author{
+ {\large  Vinícius R. dos Santos}\thanks{vrdsantos@inf.ufpel.edu.br},
+ {\large  Renata H. S. Reiser}\thanks{reiser@inf.ufpel.edu.br},
+ {\large  Maurício L. Pilla}\thanks{pilla@inf.ufpel.edu.br}\\
+ {\small Mestrado em Ciência da Computação, PPGC, CDTEC, UFPel, Pelotas, RS} \\
+{\large Alice Kozakevicius}\thanks{alicek@ufsm.br} \\
+{\small Departamento de Matemática, PPGI, LANA \& GMICRO, UFSM, Santa Maria, RS} \\
+ }
+
+\criartitulo
+
+
+\section{Resumo}
+
+% Parágrafo
+%A Matemática Intervalar~\cite{Moore79} vem sendo empregada no tratamento da incerteza dos resultados aproximados em algoritmos numéricos da Computação Científica~(\emph{Scientific Computing} -- SC). Através das formulações intervalares obtém-se melhor conhecimento e controle dos erros nos dados visto que o intervalo, de acordo com Moore~\cite{Moore79}, pode passar a apresentar distância entre o seu supremo e ínfimo, representando assim um intervalo de possíveis valores que o dado pontual poderia resultar. Este controle é importante para avaliação de desempenho e exatidão de processos associados à SC.
+% Parágrafo
+A principal meta deste projeto consiste no desenvolvimento de extensões intervalares e otimização de Transformadas Discretas \emph{Wavelets} (TDWs), considerando a família de funções wavelets ortonormais de Daubechies, funções \emph{Spline-Wavelets} e \emph{Wavelets} interpolatórias.
+%Os algoritmos originais de cada uma das transformações são o ponto de partida para o desenvolvimento de bibliotecas contendo suas extensões intervalares.
+O trabalho teve início com a implementação otimizada da Transformada \emph{Wavelet} de Haar (TWH), em sua versão decimada, no qual foi possível eliminar totalmente o erro de cálculo em uma das 4 abordagens estudadas~\cite{SIM2015}. As otimizações também influenciaram na redução de até metade do tempo de execução.
+% Parágrafo
+%A partir dos algoritmos originais da Transformada Wavelet de Haar (TWH) \cite{Stollnitz95}, foi desenvolvida a biblioteca Int-Haar~\cite{7} contendo extensões intervalares para a versão decimada da transformada, dando suporte aos casos uni e bidimensionais. No seguimento deste estudo inicial, percebeu-se a possibilidade de se otimizar a TWH em termos de exatidão de cálculo, como descrito em \cite{WEIT2013}, no qual foi possível eliminar totalmente o erro de cálculo em uma das 4 abordagens estudadas. As otimizações também influenciaram na redução de até metade do tempo de execução~\cite{SIM2015}.
+% Parágrafo
+A implementação da versão não decimada, conhecida como formulação À Trous \cite{IEEE2007}, utiliza da mesma estratégia de otimização utilizada pela sua versão decimada. Esta estratégia consiste em realizar primeiramente a tranformação não normalizada dos dados, que não envolve o uso de valores irracionais, e na sequência cada coeficiente resultante é multiplicando pelo seu fator de normalização $2^{j/2}$, sendo $j$ é o nível local da transformação. Desta forma as iterações do programa utilizam de divisões pelo valor inteiro $2$, ao invés de $\sqrt{2}$ como é utilizado no processo normalizado, evitando assim divergências de cálculo durante os vários níveis de transformação.
+
+\section{TESTES E RESULTADOS}
+
+A Figura~\ref{fig:test} apresenta os resultados em termos de tempo de execução e erro de cálculo envolvido. Os tempos de execução dos algoritmos desenvolvidos foram em média 17\% mais lentos devido à etapa extra adicionada para normalização dos dados. Sobre os erros de cálculo, é possível notar o ganho de uma ordem de grandeza em todos os testes, mostrando que os algoritmos desenvolvidos são mais exatos que os da literatura. Importante notar que o processo de composição não implica em erros de cálculo, por isso a ausência de barras no gráfico.
+
+\begin{figure}[ht]
+\vspace{-2mm}
+\centering
+    \includegraphics[width=13cm]{Imagens/test.png}
+    \vspace{-2mm}
+    \caption{Médias dos tempos de execução e medição de erro das transformadas HWT À-Trous 2D padrão e não-padrão para imagem de 1024x1024 pixels.}
+    \label{fig:test}
+\end{figure}
+
+\section{CONCLUSÃO}
+
+Este trabalho apresenta a implementação da versão intervalar do algoritmo da TWH À-Trous com bons resultados quanto à análise do erro. As otimizações viabilizam o aumento na precisão dos cálculos de maneira satisfatória, com um baixo custo adicional em desempenho.
+% Parágrafo
+Pelo fato das transformadas \textit{wavelets} serem apropriadas para a análise de dados em contextos nos quais as escalas de representação são relevantes para o problema, o ganho de exatidão obtido pelas simplificações propostas neste trabalho representam uma contribuição significativa para esta área de pesquisa.
+% Parágrafo
+Na continuidade, busca-se a extensão da biblioteca para suporte a programação paralela, utilizando OpenMP ou GPGPUs ({\em General-Processing Graphics Processing Units}).
+% Os códigos-fonte desenvolvidos neste trabalho estão disponíveis em \url{https://github.com/fireapache/Int-DWTs/}.
+
+\section*{Agradecimentos}
+%Bolsa de IC (PIBITI/FAPERGS).
+Projetos: 309533/2013-9 (PQ-2 CNPq), FAPERGS PQG-1873-2551/13.0, 309533/2013-9 (PqG FAPERGS) e 448766/2014-0 (MCTI/CNPQ/Universal 14/2014 - Faixa B).
+
+\bibliographystyle{sbc}
+\bibliography{sbc-template}
+\end{document}
+
+
+
+
