@@ -53,7 +53,7 @@ O trabalho teve início com a implementação otimizada da Transformada \emph{Wavel
 % Parágrafo
 A implementação da versão não decimada, conhecida como formulação À Trous \cite{IEEE2007}, utiliza da mesma estratégia de otimização utilizada pela sua versão decimada. Esta estratégia consiste em realizar primeiramente a tranformação não normalizada dos dados, que não envolve o uso de valores irracionais, e na sequência cada coeficiente resultante é multiplicando pelo seu fator de normalização $2^{j/2}$, sendo $j$ é o nível local da transformação. Desta forma as iterações do programa utilizam de divisões pelo valor inteiro $2$, ao invés de $\sqrt{2}$ como é utilizado no processo normalizado, evitando assim divergências de cálculo durante os vários níveis de transformação.
 
-\section{TESTES E RESULTADOS}
+\section{Testes e Resultados}
 
 A Figura~\ref{fig:test} apresenta os resultados em termos de tempo de execução e erro de cálculo envolvido. Os tempos de execução dos algoritmos desenvolvidos foram em média 17\% mais lentos devido à etapa extra adicionada para normalização dos dados. Sobre os erros de cálculo, é possível notar o ganho de uma ordem de grandeza em todos os testes, mostrando que os algoritmos desenvolvidos são mais exatos que os da literatura. Importante notar que o processo de composição não implica em erros de cálculo, por isso a ausência de barras no gráfico.
 
@@ -66,7 +66,7 @@ A Figura~\ref{fig:test} apresenta os resultados em termos de tempo de execução e
     \label{fig:test}
 \end{figure}
 
-\section{CONCLUSÃO}
+\section{Conclusão}
 
 Este trabalho apresenta a implementação da versão intervalar do algoritmo da TWH À-Trous com bons resultados quanto à análise do erro. As otimizações viabilizam o aumento na precisão dos cálculos de maneira satisfatória, com um baixo custo adicional em desempenho.
 % Parágrafo
