@@ -45,13 +45,13 @@
 % Parágrafo
 %A Matemática Intervalar~\cite{Moore79} vem sendo empregada no tratamento da incerteza dos resultados aproximados em algoritmos numéricos da Computação Científica~(\emph{Scientific Computing} -- SC). Através das formulações intervalares obtém-se melhor conhecimento e controle dos erros nos dados visto que o intervalo, de acordo com Moore~\cite{Moore79}, pode passar a apresentar distância entre o seu supremo e ínfimo, representando assim um intervalo de possíveis valores que o dado pontual poderia resultar. Este controle é importante para avaliação de desempenho e exatidão de processos associados à SC.
 % Parágrafo
-A principal meta deste projeto consiste no desenvolvimento de extensões intervalares e otimização de Transformadas Discretas \emph{Wavelets} (TDWs), considerando a família de funções wavelets ortonormais de Daubechies, funções \emph{Spline-Wavelets} e \emph{Wavelets} interpolatórias.
+A principal meta deste projeto consiste no desenvolvimento de extensões intervalares e otimizações de Transformadas Discretas \emph{Wavelets} (TDWs), considerando a família de funções \emph{Wavelets} ortonormais de Daubechies, funções \emph{Spline-Wavelets} e \emph{Wavelets} interpolatórias.
 %Os algoritmos originais de cada uma das transformações são o ponto de partida para o desenvolvimento de bibliotecas contendo suas extensões intervalares.
 O trabalho teve início com a implementação otimizada da Transformada \emph{Wavelet} de Haar (TWH), em sua versão decimada, no qual foi possível eliminar totalmente o erro de cálculo em uma das 4 abordagens estudadas~\cite{SIM2015}. As otimizações também influenciaram na redução de até metade do tempo de execução.
 % Parágrafo
 %A partir dos algoritmos originais da Transformada Wavelet de Haar (TWH) \cite{Stollnitz95}, foi desenvolvida a biblioteca Int-Haar~\cite{7} contendo extensões intervalares para a versão decimada da transformada, dando suporte aos casos uni e bidimensionais. No seguimento deste estudo inicial, percebeu-se a possibilidade de se otimizar a TWH em termos de exatidão de cálculo, como descrito em \cite{WEIT2013}, no qual foi possível eliminar totalmente o erro de cálculo em uma das 4 abordagens estudadas. As otimizações também influenciaram na redução de até metade do tempo de execução~\cite{SIM2015}.
 % Parágrafo
-A implementação da versão não decimada, conhecida como formulação À Trous \cite{IEEE2007}, utiliza da mesma estratégia de otimização utilizada pela sua versão decimada. Esta estratégia consiste em realizar primeiramente a tranformação não normalizada dos dados, que não envolve o uso de valores irracionais, e na sequência cada coeficiente resultante é multiplicando pelo seu fator de normalização $2^{j/2}$, sendo $j$ é o nível local da transformação. Desta forma as iterações do programa utilizam de divisões pelo valor inteiro $2$, ao invés de $\sqrt{2}$ como é utilizado no processo normalizado, evitando assim divergências de cálculo durante os vários níveis de transformação.
+A implementação da versão não decimada, conhecida como formulação À Trous \cite{IEEE2007}, utiliza da mesma estratégia de otimização utilizada pela sua versão decimada. Esta estratégia consiste em realizar primeiramente a tranformação não normalizada dos dados, que não envolve o uso de valores irracionais, e na sequência cada coeficiente resultante é multiplicado pelo seu fator de normalização $2^{j/2}$, sendo $j$ o nível local da transformação. Ou seja, as iterações do programa utilizam divisões pelo valor inteiro $2$, ao invés de $\sqrt{2}$ como é utilizado no processo normalizado, evitando assim divergências de cálculo durante os vários níveis de transformação.
 
 \section{Testes e Resultados}
 
@@ -79,8 +79,11 @@ Na continuidade, busca-se a extensão da biblioteca para suporte a programação pa
 %Bolsa de IC (PIBITI/FAPERGS).
 Projetos: 309533/2013-9 (PQ-2 CNPq), FAPERGS PQG-1873-2551/13.0, 309533/2013-9 (PqG FAPERGS) e 448766/2014-0 (MCTI/CNPQ/Universal 14/2014 - Faixa B).
 
-\bibliographystyle{sbc}
+\bibliographystyle{abbrv}
 \bibliography{sbc-template}
+
+
+
 \end{document}
 
 
